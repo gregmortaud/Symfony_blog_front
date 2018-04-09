@@ -28,6 +28,21 @@ class DefaultController extends Controller
         ]);
     }
     /**
+     * @Route("/login")
+     * @Method({"GET"})
+     */
+    public function loginAction()
+    {
+
+        $client = new Client();
+        $response = $client->request('GET', 'http://127.0.0.1:8000/login');
+        print_r ($response);
+        return $this->render('@App/Security/login.html.twig');
+    }
+
+
+
+    /**
      * @Route("/article")
      * @Method({"GET"})
      */

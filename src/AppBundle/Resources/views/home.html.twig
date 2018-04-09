@@ -4,6 +4,7 @@
 
 {% block body %}
 
+  <button type="button" class="btn btn-default">Add Article</button>
   {% for article in listArticle %}
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -12,6 +13,9 @@
       <div class="panel-body">
         {{ article.text }}
       </div>
+      <button type="button" class="btn btn-default btn-sm">
+        <span class="glyphicon glyphicon-thumbs-up"></span> Like
+      </button>
     </div>
   {% endfor %}
 {% endblock %}
