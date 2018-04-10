@@ -11,7 +11,7 @@ use GuzzleHttp\Client;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="home")
      */
     public function indexAction()
     {
@@ -27,6 +27,7 @@ class DefaultController extends Controller
           "listArticle" => $listArticle,
         ]);
     }
+
     /**
      * @Route("/login")
      * @Method({"GET"})
@@ -34,21 +35,51 @@ class DefaultController extends Controller
     public function loginAction()
     {
 
-        $client = new Client();
-        $response = $client->request('GET', 'http://127.0.0.1:8000/login');
-        print_r ($response);
+        // $client = new Client();
+        // $response = $client->request('GET', 'http://127.0.0.1:8000/login');
+        // print_r ($response);
         return $this->render('@App/Security/login.html.twig');
     }
 
+    /**
+     * @Route("/login_check")
+     */
+    public function login_checkAction()
+    {
+      $client = new Client();
+      $auth = array(
+        'content-type' => 'application/json',
+        'json' => array()
+      );
+      $response = $client->request('GET', 'http://127.0.0.1:8000/login', $auth);
+      $content = (string) $response->getBody();
+      $listArticle = json_decode($content);
+      return $this->render('@App/home.html.twig', [
+        "listArticle" => $listArticle,
+      ]);
+
+
+        // echo "login_check";
+        // $client = new Client();
+        // $auth = array(
+        //   'content-type' => 'application/json',
+        //   'json' => array()
+        // );
+        // $response = $client->request('GET', 'http://127.0.0.1:8000/article/list', $auth);
+        // $content = (string) $response->getBody();
+        // $listArticle = json_decode($content);
+        // return $this->render('@App/home.html.twig', [
+        //   "listArticle" => $listArticle,
+        // ]);
+    }
 
 
     /**
-     * @Route("/article")
+     * @Route("/add_article")
      * @Method({"GET"})
      */
-    public function newArticleAction()
+    public function addArticleAction()
     {
-      // return new Response("Affichage Front");
-        return $this->render('@App/Default/index.html.twig');
+        return $this->render('@App/Article/addArticle.html.twig');
     }
 }

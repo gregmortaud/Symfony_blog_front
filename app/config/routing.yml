@@ -2,3 +2,15 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
     prefix: /
+
+login:
+    path: /login
+    controller: App\Controller\DefaultController::login
+
+login_check:
+    path: /login_check
+    controller: App\Controller\DefaultController::login_check
+
+add_article:
+    path: /add_article
+    controller: App\Controller\DefaultController::addArticle

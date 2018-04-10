@@ -4,7 +4,7 @@
 
 {% block body %}
 
-  <button type="button" class="btn btn-default">Add Article</button>
+  <a href="{{ path('add_article') }}"><button type="button" class="add-article-button btn btn-default">Add Article</button></a>
   {% for article in listArticle %}
     <div class="panel panel-default">
       <div class="panel-heading">

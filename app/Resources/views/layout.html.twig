@@ -12,8 +12,11 @@
   </head>
   <body>
     <header class="header">
-        <img class="logo-icon" src="{{ asset('images/blog.png') }}">
+        <a href="{{ path('home') }}">
+          <img class="logo-icon" src="{{ asset('images/blog.png') }}">
+        </a>
         <h1 class="logo">My Blog</h1>
+        <button type="button" class="login-button btn btn-default"><a href="{{ path('login') }}">Login</a></button>
     </header>
     <div class="container">
       {% block body %}
